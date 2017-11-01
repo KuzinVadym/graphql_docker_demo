@@ -1,13 +1,22 @@
 version: '3'
 services:
-  server:
-    image: graphql_docker_demo
-    build: ./
+  users_server:
+    build: ./users_server
     command: node index.js
     ports:
       - "3000:3000"
     volumes:
-      - ./:/usr/src/app
+      - ./users_server:/usr/src/app/users_server
+      - /usr/src/app/node_modules
+    depends_on:
+      - "mongo"
+  groups_server:
+    build: ./groups_server
+    command: node index.js
+    ports:
+      - "3001:3001"
+    volumes:
+      - ./groups_server:/usr/src/app/groups_server
       - /usr/src/app/node_modules
     depends_on:
       - "mongo"

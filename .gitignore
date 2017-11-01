@@ -1,5 +1,5 @@
-node_modules/
-db/
+groups_server/node_modules/
+users_server/node_modules/
 dist/
 mongo-dumps/
 static/
