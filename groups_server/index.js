@@ -30,6 +30,11 @@ app.get('/api/groups/first', function (req, res) {
   })
 });
 
+app.get('/api/groups/test', function (req, res) {
+  console.log("Get Group Test");
+  res.json("Hello from Group");
+});
+
 app.listen(3001, function () {
   console.log('Example app listening on port 3001!')
 })

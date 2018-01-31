@@ -19,6 +19,15 @@ app.get('/testUsers', function (req, res) {
     res.json(users);
   })
 })
+
+app.get('/testUsersAndGroups', function (req, res) {
+  getGroupTest()
+  .then(result=>{
+    res.json(result);
+  })
+  .catch( err => console.log(err) );
+})
+
 app.get('/addNewUser', function (req, res) {
   getGroupInfo()
   .then(group=>{
@@ -40,11 +49,22 @@ app.get('/addNewUser', function (req, res) {
 
 function getGroupInfo() {
   return new Promise(function(resolve, reject) {
-    let url = 'http://groups_server:3001/api/groups/first';
+    let url = 'http://groups_server:3001/groups/first';
     request(reqOptions(url), (error, response, group) => {
       if (error) reject(error);
       console.log(group);
       resolve(group);
+    });
+  });
+}
+
+function getGroupTest() {
+  return new Promise(function(resolve, reject) {
+    let url = 'http://groups_server:3001/groups/test';
+    request(reqOptions(url), (error, response, message) => {
+      if (error) reject(error);
+      console.log(message);
+      resolve(message);
     });
   });
 }
